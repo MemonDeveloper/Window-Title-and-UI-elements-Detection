@@ -1,56 +1,68 @@
-# 🧐 ES Order Window Monitor
+# 🧐 Window Title Monitor
 
-A Python-based automation tool for monitoring trading-related windows on Windows OS. This script detects the presence of specific window titles and performs OCR (Optical Character Recognition) to find the keyword "ES". Based on detection, it prompts the user to continue or automatically closes the window.
+A Python automation tool to monitor specific trading windows on Windows OS. The script detects targeted window titles and performs OCR (Optical Character Recognition) inside those windows to identify specific text elements. It alerts the user based on detected content and can automatically close windows if needed.
 
 ## 💡 Features
 
-- Monitors windows titled:
-  - `Order Ticket - ES`
-  - `Order Preview`
-- Captures the window's screen content
-- Performs OCR using [Tesseract](https://github.com/tesseract-ocr/tesseract)
-- Automatically prompts the user if `"ES"` is detected
-- Optionally closes the window based on user input
-- Logs timestamps for each action
+1. **Window Title Detection**  
+   - Continuously scans open windows for titles starting with:  
+     - `"Order Ticket - ES"`  
+     - `"Order Preview"`  
+   - Logs window open/close events in real-time.
+
+2. **In-Window Text Detection Using OCR**  
+   - Captures a screenshot of the detected window’s visible UI elements (labels, textboxes, buttons).  
+   - Uses [Tesseract OCR](https://github.com/tesseract-ocr/tesseract) to extract text from the window image.  
+   - Searches the extracted text for the keyword `"ES"`.  
+   - If `"ES"` is found, prompts the user with a popup to either continue or close the window.  
+   - Automatically closes the window if the user selects “No” in the popup.
 
 ## 🛠️ Technologies Used
 
-- Python 3.x
-- `ctypes`, `datetime`, `win32gui`, `win32con`, `win32api`, `win32ui`, `win32process` (via `pywin32`)
-- `PIL` (Python Imaging Library via `Pillow`)
-- `pytesseract` for OCR
+- Python 3.x  
+- Windows API via `ctypes` and `pywin32` (`win32gui`, `win32con`, `win32process`, `win32api`, `win32ui`)  
+- [Pillow](https://python-pillow.org/) for image handling  
+- [pytesseract](https://github.com/madmaze/pytesseract) for OCR  
 
 ## 🔧 Setup Instructions
 
-1. **Install dependencies**:
+1. **Install Python dependencies:**
    ```bash
    pip install pywin32 pillow pytesseract
 ````
 
-2. **Install Tesseract OCR**:
+2. **Install Tesseract OCR engine:**
 
-   * Download from: [https://github.com/tesseract-ocr/tesseract](https://github.com/tesseract-ocr/tesseract)
-   * Update the path in the script:
+   * Download and install from [Tesseract GitHub](https://github.com/tesseract-ocr/tesseract) or [official binaries](https://github.com/UB-Mannheim/tesseract/wiki).
+   * Update the `tesseract_cmd` path in the script to the installed location:
 
      ```python
      pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
      ```
 
+3. **Run the script:**
+
+   ```bash
+   python your_script_name.py
+   ```
+
 ## 🚀 How It Works
 
-* The script continuously checks open windows.
-* If it finds a window that matches the title pattern, it captures the window content.
-* OCR is applied to detect `"ES"` in the content.
-* If `"ES"` is found, a warning popup is shown:
+The script continuously runs and performs two main tasks:
 
-  * Clicking **Yes** continues.
-  * Clicking **No** automatically closes the window.
+1. **Window Title Monitoring:**
+   Enumerates all open windows on the system and looks for window titles starting with the specified prefixes. Logs when these windows open or close.
+
+2. **In-Window OCR Text Recognition:**
+   When a target window is detected, it captures a screenshot of the window's content. Then, it applies OCR to extract visible text from UI elements such as labels, textboxes, and buttons. If the keyword `"ES"` is found in the extracted text, a popup is shown asking the user whether to keep the window open or close it automatically.
 
 ## ⚠️ Notes
 
-* Make sure Tesseract is properly installed and its path is set
-* Requires admin privileges in some environments
+* This tool works **only on Windows OS**.
+* Make sure Tesseract OCR is installed and correctly configured.
+* Running with sufficient permissions may be required to access window contents.
+
 
 ## 👨‍💻 Author
 
-*Muhammad Sami Memon* — Contributions, issues, and suggestions are welcome!
+*Muhammad Sami Naeem* — contributions and feedback are welcome!
