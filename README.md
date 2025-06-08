@@ -43,7 +43,7 @@ A Python automation tool to monitor specific trading windows on Windows OS. The 
 3. **Run the script:**
 
    ```bash
-   python your_script_name.py
+   python PopupWarning.py
    ```
 
 ## 🚀 How It Works
