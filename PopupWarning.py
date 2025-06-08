@@ -198,6 +198,8 @@ def enum_windows_proc(hwnd, lParam):
             ocr_main()
             return False
 
+        ##### WINDOWS TITLE ####
+        
         if title.startswith(prefix_order_ES):
             window_found = True
             if not window_currently_open:
