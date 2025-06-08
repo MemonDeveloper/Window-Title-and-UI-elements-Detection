@@ -1,4 +1,4 @@
-# 🧐 Window Title Monitor
+# 🧐 Window Title Monitor & UI elements (labels, textboxes, buttons) Detection
 
 A Python automation tool to monitor specific trading windows on Windows OS. The script detects targeted window titles and performs OCR (Optical Character Recognition) inside those windows to identify specific text elements. It alerts the user based on detected content and can automatically close windows if needed.
 
