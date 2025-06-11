@@ -261,7 +261,7 @@ def enum_windows_proc(hwnd, lParam):
                 window_currently_open = True
                 popup_shown = False
                 es_popup_shown = False
-                print_with_timestamp("Window is OPEN")
+                print_with_timestamp("✅ Window is OPEN")
                 
                 if not popup_shown:
                     popup_shown = True
@@ -281,7 +281,7 @@ def enum_windows_proc(hwnd, lParam):
                             break
                         elif result == IDNO:
                             PostMessageW(hwnd, WM_CLOSE, 0, 0)
-                            print_with_timestamp("User Selected No")
+                            print_with_timestamp("❌ User Selected No")
                             break
                         else:
                             break
@@ -293,7 +293,7 @@ def enum_windows_proc(hwnd, lParam):
                 window_currently_open = True
                 popup_shown = False
                 es_popup_shown = False
-                print_with_timestamp("Window is OPEN")
+                print_with_timestamp("✅ Window is OPEN")
                 
                 if not popup_shown:
                     popup_shown = True
@@ -314,7 +314,7 @@ def enum_windows_proc(hwnd, lParam):
                             break
                         elif result == IDNO:
                             PostMessageW(hwnd, WM_CLOSE, 0, 0)
-                            print_with_timestamp("User Selected No")
+                            print_with_timestamp("❌ User Selected No")
                             break
                         else:
                             break
@@ -332,7 +332,7 @@ def main():
             window_currently_open = False
             popup_shown = False
             es_popup_shown = False
-            print_with_timestamp("Window is CLOSED")
+            print_with_timestamp("❌ Window is CLOSED")
 
 if __name__ == "__main__":
     main()
